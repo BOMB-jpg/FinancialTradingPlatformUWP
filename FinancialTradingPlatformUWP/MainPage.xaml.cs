@@ -23,15 +23,15 @@ namespace FinancialTradingPlatformUWP
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage : Page //mainpage主页面
     {
         string _data = null;
-        public MainPage()
+        public MainPage()   //构造器
         {
             this.InitializeComponent();
         }
 
-        private void AddListItem(string text)
+        private void AddListItem(string text)  //增加值
         {
             ListViewItem listViewItem = new ListViewItem();
             TextBlock textBlock = new TextBlock();
@@ -41,15 +41,15 @@ namespace FinancialTradingPlatformUWP
 
         }
 
-        private void btnFastLocalOperation_Click(object sender, RoutedEventArgs e)
+        private void btnFastLocalOperation_Click(object sender, RoutedEventArgs e)  //
         {
             AddListItem($"Fast Local Operation Completed - ThreadId: {Thread.CurrentThread.ManagedThreadId}");
         }
-
+//按钮点击事件处理方法 
         private async void btnCPUBoundOperations_Click(object sender, RoutedEventArgs e)
         {
 
-            if (string.IsNullOrEmpty(_data))
+            if (string.IsNullOrEmpty(_data))  //string 的静态方法判断是否为NUL或者为空
             {
                 StockMarketData stockMarketData = new StockMarketData();
                 _data = await stockMarketData.GetDataAsync();
@@ -80,6 +80,7 @@ namespace FinancialTradingPlatformUWP
             DisplayIndicatorsOnChart(tasks[0].Result, tasks[1].Result, tasks[2].Result, tasks[3].Result);
            // SaveIndicatorDataToFile(tasks[0].Result, tasks[1].Result, tasks[2].Result, tasks[3].Result);
         }
+        //这个方法用于保存指标数据到文件。
         private void SaveIndicatorDataToFile(string data1, string data2, string data3, string data4)
         {
             //Code goes here to save indicator data to file
